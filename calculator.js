@@ -17,37 +17,37 @@ function calculatorModule(){
     function getTotal(){
         return total;
     };
-    function validate(num){
+    function validation(num){
         if(typeof num !== 'number'){
-            throw Error;
+            throw err;
         }
     }
 
     return {
         load: function (num){
-            validate(num);
+            validation(num);
             total = num;
             return total;
         },
         getTotal: getTotal,
         currentTotal: currentTotal,
         add: function(num){
-            validate(num);
+            validation(num);
             total += num;
             return total;
         },
         subtract: function(num){
-            validate(num);
+            validation(num);
             total -= num;
             return total;
         },
         multiply: function(num){
-            validate(num);
+            validation(num);
             total *= num;
             return total;
         },
         divide: function(num){
-            validate(num);
+            validation(num);
             total /= num;
             return total;
         },
@@ -56,15 +56,14 @@ function calculatorModule(){
             return memory;
         },
         saveMemory: function(){
-            var ok = memory;
-            return ok;
+            var save = memory;
+            return save;
         },
         clearMemory: function(){
             memory = 0;
             total = 0;
             return memory;
         },
-        validate: validate
         }
     };
 
