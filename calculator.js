@@ -7,22 +7,67 @@
  */
 
 function calculatorModule(){
-    var memory = 2;
+    var memory = 0;
     var total = 0;
 
-    function getTotal(num){
-        total += num;
+    function currentTotal(){
         return total;
     };
 
+    function getTotal(){
+        return total;
+    };
+    function validate(num){
+        if(typeof num !== 'number'){
+            throw Error;
+        }
+    }
+
     return {
         load: function (num){
-            calculator = num;
-            return num;
+            validate(num);
+            total = num;
+            return total;
         },
         getTotal: getTotal,
-    }
-};
+        currentTotal: currentTotal,
+        add: function(num){
+            validate(num);
+            total += num;
+            return total;
+        },
+        subtract: function(num){
+            validate(num);
+            total -= num;
+            return total;
+        },
+        multiply: function(num){
+            validate(num);
+            total *= num;
+            return total;
+        },
+        divide: function(num){
+            validate(num);
+            total /= num;
+            return total;
+        },
+        recallMemory: function(){
+            memory = total;
+            return memory;
+        },
+        saveMemory: function(){
+            var ok = memory;
+            return ok;
+        },
+        clearMemory: function(){
+            memory = 0;
+            total = 0;
+            return memory;
+        },
+        validate: validate
+        }
+    };
+
 
   /**
    * sets the `total` to the number passed in
